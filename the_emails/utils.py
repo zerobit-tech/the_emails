@@ -1,5 +1,4 @@
 
-from templated_email import send_templated_mail
 from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags

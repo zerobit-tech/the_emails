@@ -15,7 +15,8 @@ requirements = [
     'the_user @ git+https://github.com/zerobit-tech/the_user@main#egg=the_user',
     'the_system @ git+https://github.com/zerobit-tech/the_system@main#egg=the_system',
     'xhtml2pdf==0.2.8',
-    'django-render-block==0.9.1'
+    'django-render-block==0.9.1',
+   
 
 ]
 
