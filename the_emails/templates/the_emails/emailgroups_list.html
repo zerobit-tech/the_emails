@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Email Groups" %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-2">
+        <div class="col">
+	<div class="card">
+		<div class="card-header">
+			<Strong>
+				{% trans "Email Groups" %}
+
+			</Strong>
+			<a href = "{% url 'emails:create' %}" class="btn btn-primary float-right">{% trans '+ Add new' %}</a> 
+
+			
+		</div>
+		<div class="card-body">
+		 
+			<table class="table table-responsive-sm table-hover table-outline mb-0 w-100 d-block d-md-table">
+				<thead class="thead-dark">
+					<tr>
+						<th  class="text-center">{% trans "Group Name" %}</th>
+                        <th  class="text-center">{% trans "Email" %}</th>
+						<th  class="text-center">{% trans "Options" %}</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for email_group in object_list %}
+					<tr>
+						<td  class="text-center">{{email_group.group_name}}</td>
+						<td  class="text-center">{{email_group.email_id}}</td>
+				 
+						<td  class="text-center">
+         
+							<a href = "{% url 'emails:detail' pk=email_group.pk   %}" class="">
+								{% trans "Details" %} 
+							</a>
+								|
+							<a href = "{% url 'emails:update' pk=email_group.pk   %}" class="">
+								{% trans "Update" %} 
+							</a>
+
+                        </td>
+					</tr>
+					{% empty %}
+                            <tr >
+
+                                <td  class="text-center" colspan="3"><p class="text-center">{% trans 'No Record Found.' %}</p></td>
+                            </tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% include "pagination2.html" with page_obj=page_obj %}
+
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}
+
+ 

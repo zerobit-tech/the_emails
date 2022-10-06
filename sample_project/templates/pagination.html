@@ -1,0 +1,20 @@
+{% load i18n %}
+<br>
+<div class="pagination">
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item  {%  if not paginator.has_previous %} disabled {% endif %} ">
+                    <a class="page-link"  {%  if   paginator.has_previous %} href="?page={{ paginator.previous_page_number }}&search_value={{request.search_value}}" {% endif %} >{% trans 'Previous' %}</a></li>
+            <li class="page-item disabled"><a class="page-link" > {% trans 'Page' %} {{ paginator.number }} {% trans 'of' %} {{ paginator.paginator.num_pages }}</a></li>
+
+
+            <li class="page-item  {%  if not paginator.has_next %}  disabled {% endif %}">
+                <a class="page-link" {%  if   paginator.has_next %} href="?page={{ paginator.next_page_number }}&search_value={{request.search_value}}" {% endif %}>{% trans 'Next' %}
+
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

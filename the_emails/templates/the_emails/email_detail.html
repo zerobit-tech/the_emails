@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load absolute_url %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-2">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+
+					<Strong> {{object.subject}}
+					</Strong>
+					{% if not object.is_pending %}
+					<a href = "{{object.get_resend_url}}" class="btn btn-primary float-right">{% trans 'Resend' %}</a> 
+					{% endif %}
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<table
+								class="table table-borderless table-responsive-sm table-hover   mb-0 w-100 d-block d-md-table">
+								<tbody>
+									<tr>
+										<th scope="row">{% trans "Senders" %}</th>
+										<td>{% absolute_url object.sender %} | {% absolute_url object.sub_sender %}</td>
+									</tr>
+									<tr>
+										<th scope="row">{% trans "Status" %}</th>
+										<td>{{object.get_status_display}}</td>
+									</tr>
+									<tr>
+										<th scope="row">{% trans "Status message" %}</th>
+										<td>{{object.status_message}}</td>
+									</tr>
+									<tr>
+										<th scope="row">{% trans "Queued Date" %}</th>
+										<td>{{object.queued_date}}</td>
+									</tr>
+
+									<tr>
+										<th scope="row">{% trans "Sent Date" %}</th>
+										<td>{{object.sent_date}}</td>
+									</tr>
+									<tr>
+										<th scope="row">{% trans "Template name" %}</th>
+										<td>{{object.template_name}}</td>
+									</tr>
+									{% if object.copy_of  %}
+									<tr>
+										<th scope="row">{% trans "Copy of" %}</th>
+										<td>{% absolute_url object.copy_of %}</td>
+									</tr>
+									{% endif %}
+
+								</tbody>
+							</table>
+						</div>
+						<div class="col">
+							<h6>{% trans "Recipients" %}:</h6>
+							<ol>
+							{% for recipient in object.recipients.all %}
+								<li>{{recipient}}</li>
+							{% endfor %}
+
+							</ol>
+						</div>
+
+						<div class="col">
+							<h6>{% trans "Attachments" %}:</h6>
+							<ol>
+							{% for attachment in object.attachments.all %}
+								<li>{% absolute_url attachment%}</li>
+							{% endfor %}
+
+							</ol>
+						</div>
+
+
+					</div>
+
+						<hr />
+
+					<div class="row">
+						<div class="col">
+							<table
+								class="table table-borderless table-responsive-sm table-hover   mb-0 w-100 d-block d-md-table">
+								<tbody>
+								 
+
+									<tr>
+										<th scope="row">{% trans "html message rendered" %}</th>
+										<td>{{object.html_message|safe }}</td>
+									</tr>
+								 
+						
+									 
+								</tbody>
+							</table>
+						</div>
+
+
+
+
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+
+ 
+{% if account %}
+{% block sidebar %}
+ 
+{% endblock sidebar%}
+{% endif %}

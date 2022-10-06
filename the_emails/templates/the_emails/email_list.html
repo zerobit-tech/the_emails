@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sent Emails" %}{% endblock %}
+
+ {% load absolute_url %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-2">
+        <div class="col">
+	<div class="card">
+		<div class="card-header">
+			<Strong>
+				{% trans "Emails" %}
+			</Strong>
+	 
+			
+		</div>
+		<div class="card-body">
+		 
+			<table class="table table-responsive-sm table-hover table-outline mb-0 w-100 d-block d-md-table">
+				<thead class="thead-dark">
+					<tr>
+						<th  class="">{% trans "Sender" %}</th>
+                        <th  class="">{% trans "Subject" %}</th>
+                        <th  class="">{% trans "Status" %}</th>
+                        <th  class="">{% trans "Generated date" %}</th>
+                        <th  class="">{% trans "Sent date" %}</th>
+						<th  class="">{% trans "Options" %}</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					{% for email in object_list %}
+					<tr>
+						<td  class="">{% absolute_url email.sender %} | {% absolute_url email.sub_sender %}</</td>
+						<td  class="">{{email.subject|truncatechars:40}}</td>
+						<td  class="">{{email.get_status_display}}</td>
+						<td  class="">{{email.queued_date}}</td>
+						<td  class="">{{email.sent_date|default_if_none:""}}</td>
+				 
+						<td  class="">
+							
+							 
+							<a href = "{{ email.get_absolute_url }}" class="">
+								{% trans "Details" %} 
+							</a>
+							 
+						 
+
+                        </td>
+					</tr>
+					{% empty %}
+                            <tr >
+
+                                <td  class="text-center" colspan="6"><p class="">{% trans 'No Record Found.' %}</p></td>
+                            </tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% include "pagination2.html" with page_obj=page_obj %}
+
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}
+
+ 
+ 

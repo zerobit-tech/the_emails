@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{%load crispy_forms_tags %}
+
+<div class="container-fluid mt-3">
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title float-start">
+				{% trans "Update" %} {{object.account.account_number}} {{object.id}}
+			</div>
+			
+		</div>
+		<div class="card-body">
+			<form method="post" onsubmit="show_processing_model()">
+			    {% csrf_token %}
+			    {{ form | crispy }}
+			    <br>
+			    <input class="btn btn-primary" type="submit" value="Update">&nbsp;&nbsp;
+			    <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block sidebar %}
+ 
+{% endblock sidebar%}

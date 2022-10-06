@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-2">
+        <div class="col">
+	<div class="card">
+		<div class="card-header">
+		 
+			<Strong> {{object.account}} {% trans "Billing Cycle" %} {{object.cycle_number}}
+			</Strong>
+			
+		</div>
+		<div class="card-body">
+			<div class="row">
+			<div class="col">
+			<table class="table table-borderless table-responsive-sm table-hover   mb-0 w-100 d-block d-md-table">
+				<tbody>
+					<tr>
+						<th scope="row">{% trans "Cycle Number" %}</th>
+						<td>{{object.cycle_number}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Payment Frequency" %}</th>
+						<td>{{object.get_payment_frequency_display}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Start Date" %}</th>
+						<td>{{object.start_date}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Salary Date" %}</th>
+						<td>{{object.salary_date}}</td>
+					</tr>
+				</tbody>
+			</table>
+		 </div>
+		 <div class="col">
+			<table class="table table-borderless table-responsive-sm table-hover   mb-0 w-100 d-block d-md-table">
+			   <tbody>		 
+					<tr>
+						<th scope="row">{% trans "Statement Date" %}</th>
+						<td>{{object.statement_date}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Due Date" %}</th>
+						<td>{{object.due_date}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Late Fee Date" %}</th>
+						<td>{{object.late_fee_date}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Statement Days" %}</th>
+						<td>{{object.statement_days}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+		 </div>
+
+		 <div class="col">
+			<table class="table  table-borderless table-responsive-sm table-hover   mb-0 w-100 d-block d-md-table">
+			   <tbody>
+
+
+
+					<tr>
+						<th scope="row">{% trans "Has Statement Printed" %}</th>
+						<td>{{object.get_statement_status_display}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Is Due" %}</th>
+						<td>{{object.is_due|yesno:"Yes,No"}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{% trans "Is Late" %}</th>
+						<td>{{object.is_late|yesno:"Yes,No"}}</td>
+					</tr>
+				 
+				 
+				</tbody>
+			</table>
+
+		</div>
+
+ 
+	</div>
+		</div>
+	</div>
+
+
+
+	 
+
+	</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+{% block sidebar %}
+ 
+{% endblock sidebar%}
